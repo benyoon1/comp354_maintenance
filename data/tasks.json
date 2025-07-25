@@ -1,0 +1,74 @@
+[
+    {
+        "id": 1,
+        "title": "LAB 2 DUE",
+        "priority": "High",
+        "due_date": "2025-07-10",
+        "status": "completed",
+        "created_date": "2025-07-08 22:42:51",
+        "completed_date": "2025-07-08 22:46:46"
+    },
+    {
+        "id": 2,
+        "title": "Mentainance Project PART-1 DUE",
+        "priority": "High",
+        "due_date": "2025-07-11",
+        "status": "completed",
+        "created_date": "2025-07-08 22:43:45",
+        "completed_date": "2025-07-08 22:48:13"
+    },
+    {
+        "id": 4,
+        "title": "Study for COMP 354 TEST2",
+        "priority": "Medium",
+        "due_date": "2025-07-12",
+        "status": "completed",
+        "created_date": "2025-07-08 22:44:47",
+        "completed_date": "2025-07-08 22:50:29"
+    },
+    {
+        "id": 5,
+        "title": "Grocerry Shopping",
+        "priority": "High",
+        "due_date": "2025-07-13",
+        "status": "completed",
+        "created_date": "2025-07-08 22:47:58",
+        "completed_date": "2025-07-08 22:50:40"
+    },
+    {
+        "id": 3,
+        "title": "Go for GYM",
+        "priority": "Low",
+        "due_date": "2025-07-11",
+        "status": "completed",
+        "created_date": "2025-07-08 22:44:11",
+        "completed_date": "2025-07-08 22:48:21"
+    },
+    {
+        "id": 6,
+        "title": "Grocerry Shopping",
+        "priority": "High",
+        "due_date": "2025-07-13",
+        "status": "pending",
+        "created_date": "2025-07-09 00:57:28",
+        "completed_date": null
+    },
+    {
+        "id": 7,
+        "title": "Grocerry Shopping",
+        "priority": "Medium",
+        "due_date": "2025-07-13",
+        "status": "pending",
+        "created_date": "2025-07-09 00:57:56",
+        "completed_date": null
+    },
+    {
+        "id": 8,
+        "title": "Shopping",
+        "priority": "Low",
+        "due_date": "2025-07-13",
+        "status": "pending",
+        "created_date": "2025-07-09 00:58:18",
+        "completed_date": null
+    }
+]
