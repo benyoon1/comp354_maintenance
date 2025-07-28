@@ -55,11 +55,36 @@ class TaskManager:
         print("Task not found.")
 
     def search_tasks(self, query):
+        def sort_key(task):
+            # sort by due date first (None/null dates go to end), then by ID
+            due_date = task.get('due_date')
+            if due_date:
+                try:
+                    from datetime import datetime
+                    return (0, datetime.strptime(due_date, "%Y-%m-%d").date(), task['id'])
+                except ValueError:
+                    # invalid date format, treat as no due date
+                    return (1, None, task['id'])
+            else:
+                # no due date, sort to end
+                return (1, None, task['id'])
+
         results = filter_tasks(self.tasks, query)
-        return sorted(results, key=lambda x: x['id'])
+        return sorted(results, key=sort_key)
 
     def get_tasks(self):
-        return sorted(self.tasks, key=lambda x: x['id'])
+        def sort_key(task):
+            due_date = task.get('due_date')
+            if due_date:
+                try:
+                    from datetime import datetime
+                    return (0, datetime.strptime(due_date, "%Y-%m-%d").date(), task['id'])
+                except ValueError:
+                    return (1, None, task['id'])
+            else:
+                return (1, None, task['id'])
+
+        return sorted(self.tasks, key=sort_key)
 
     def get_progress(self):
         total = len(self.tasks)
