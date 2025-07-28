@@ -1,16 +1,16 @@
-# main.py
 import argparse
 from task_manager import TaskManager
 from data_handler import DataHandler
 from cli_interface import CLIInterface
 from undo_manager import UndoManager
 
+parser = None
 
-def main():
 
+def cli_parse():
+    global parser
     parser = argparse.ArgumentParser(description="CLI To-Do Application")
     subparser = parser.add_subparsers(dest="command")
-
     add_parser = subparser.add_parser("add", help="Add a new task")
     add_parser.add_argument('--priority', type=str, choices=[
                             'High', 'Medium', 'Low'],
@@ -33,7 +33,12 @@ def main():
     progress_parser = subparser.add_parser(
         "progress", help="Show progress Task")
     list_parser = subparser.add_parser("list", help="List all tasks")
-    args = parser.parse_args()
+    help_parser = subparser.add_parser("help")
+    return parser.parse_args()
+
+
+def main():
+    args = cli_parse()
 
     data_handler = DataHandler()
     undo_manager = UndoManager(data_handler)
