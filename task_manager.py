@@ -4,6 +4,7 @@ from priority_manager import validate_priority
 from date_manager import validate_date, is_due_soon
 from search_engine import filter_tasks
 
+
 class TaskManager:
     def __init__(self, data_handler, undo_manager):
         self.data_handler = data_handler
@@ -36,7 +37,8 @@ class TaskManager:
         for task in self.tasks:
             if task["id"] == task_id and task["status"] == "pending":
                 task["status"] = "completed"
-                task["completed_date"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                task["completed_date"] = datetime.now().strftime(
+                    "%Y-%m-%d %H:%M:%S")
                 self.data_handler.save_tasks(self.tasks)
                 print("Task marked as complete.")
                 return
@@ -53,10 +55,11 @@ class TaskManager:
         print("Task not found.")
 
     def search_tasks(self, query):
-        return filter_tasks(self.tasks, query)
+        results = filter_tasks(self.tasks, query)
+        return sorted(results, key=lambda x: x['id'])
 
     def get_tasks(self):
-        return self.tasks
+        return sorted(self.tasks, key=lambda x: x['id'])
 
     def get_progress(self):
         total = len(self.tasks)
@@ -67,6 +70,7 @@ class TaskManager:
         restored = self.undo_manager.restore()
         if restored:
             self.tasks.append(restored)
+            self.tasks.sort(key=lambda x: x['id'])
             self.data_handler.save_tasks(self.tasks)
             print("Undo successful.")
         else:

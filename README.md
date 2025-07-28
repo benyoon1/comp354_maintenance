@@ -2,18 +2,9 @@
 
 ## Maintenance Report Submission
 
-**Course:** COMP 354 Introduction to Software Engineering  
+**Course:** COMP 354 - Introduction to Software Engineering  
 **Instructor:** Dr. Malleswara Talla  
-**Term:** Summer 2 2025
-
-### Team Members
-
-1. Nidhi Prasad (40259273)
-2. Narendra Mishra (40224303)
-3. Neelendra Mishra (40224310)
-4. Aryan Kotecha (40249867)
-5. Parsa Ghadimi (40203370)
-6. Kirubel Asrat (40153970)
+**Term:** Summer 2025
 
 ## Project Overview
 
@@ -36,6 +27,10 @@ comp354_maintenance/
 └── data/
     └── tasks.json
 ```
+
+## Summary of Maintenance Contributions
+- **Task Ordering Fix**: Fixed issue where tasks were displayed out of order after undo operations. Modified `get_tasks()`, `search_tasks()`, and `undo()` methods in `task_manager.py` to ensure tasks are always displayed in ID order (1, 2, 3, etc.) regardless of internal storage order.
+
 
 ## Getting Started
 
