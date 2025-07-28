@@ -33,9 +33,9 @@ class TaskManager:
         self.data_handler.save_tasks(self.tasks)
         print("Task added.")
 
-    def complete_task(self, task_id):
+    def complete_task(self, task_id: int, task_name: str):
         for task in self.tasks:
-            if task["id"] == task_id and task["status"] == "pending":
+            if (task["id"] == task_id or task["title"] == task_name) and task["status"] == "pending":
                 task["status"] = "completed"
                 task["completed_date"] = datetime.now().strftime(
                     "%Y-%m-%d %H:%M:%S")
@@ -44,9 +44,9 @@ class TaskManager:
                 return
         print("Task not found or already completed.")
 
-    def delete_task(self, task_id):
+    def delete_task(self, task_id: int, task_name: str):
         for i, task in enumerate(self.tasks):
-            if task["id"] == task_id:
+            if task["id"] == task_id or task["title"] == task_name:
                 self.undo_manager.backup(task)
                 del self.tasks[i]
                 self.data_handler.save_tasks(self.tasks)

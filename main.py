@@ -7,20 +7,32 @@ from undo_manager import UndoManager
 
 
 def main():
-    parser = argparse.ArgumentParser(description="CLI To-Do Application")
-    parser.add_argument('--add', type=str, help='Add a new task')
-    parser.add_argument('--priority', type=str,
-                        choices=['High', 'Medium', 'Low'], help='Set task priority')
-    parser.add_argument('--due', type=str,
-                        help='Set task due date (YYYY-MM-DD)')
-    parser.add_argument('--done', type=int, help='Mark task as complete')
-    parser.add_argument('--delete', type=int, help='Delete task by ID')
-    parser.add_argument('--list', action='store_true', help='List all tasks')
-    parser.add_argument('--undo', action='store_true', help='Undo last action')
-    parser.add_argument('--search', type=str, help='Search tasks')
-    parser.add_argument('--progress', action='store_true',
-                        help='Show task progress')
 
+    parser = argparse.ArgumentParser(description="CLI To-Do Application")
+    subparser = parser.add_subparsers(dest="command")
+
+    add_parser = subparser.add_parser("add", help="Add a new task")
+    add_parser.add_argument('--priority', type=str, choices=[
+                            'High', 'Medium', 'Low'],
+                            help='Set task priority', default="Medium")
+    add_parser.add_argument(
+        '--due', type=str, help='Set task due date (YYYY-MM-DD)')
+    add_parser.add_argument("name", type=str, help='Task Names')
+    done_parser = subparser.add_parser("done", help="Mark task as complete")
+    done_parser.add_argument(
+        "--by-id", type=int, help="Select task by id", default=-1)
+    done_parser.add_argument(
+        "--by-name", type=str, help="Select task by name", default="")
+    delete_parser = subparser.add_parser("delete", help='Delete task')
+    delete_parser.add_argument(
+        "--by-id", type=int, help="Select task by id", default=-1)
+    delete_parser.add_argument(
+        "--by-name", type=str, help="Select task by name", default="")
+    undo_parser = subparser.add_parser("undo", help='Undo task')
+    search_parser = subparser.add_parser("search", help="Search Task")
+    progress_parser = subparser.add_parser(
+        "progress", help="Show progress Task")
+    list_parser = subparser.add_parser("list", help="List all tasks")
     args = parser.parse_args()
 
     data_handler = DataHandler()
@@ -28,20 +40,20 @@ def main():
     task_manager = TaskManager(data_handler, undo_manager)
     cli = CLIInterface()
 
-    if args.add:
-        task_manager.add_task(args.add, args.priority, args.due)
-    elif args.done:
-        task_manager.complete_task(args.done)
-    elif args.delete:
-        task_manager.delete_task(args.delete)
-    elif args.undo:
+    if args.command == "add":
+        task_manager.add_task(args.name, args.priority, args.due)
+    elif args.command == "done":
+        task_manager.complete_task(args.by_id, args.by_name)
+    elif args.command == "delete":
+        task_manager.delete_task(args.by_id, args.by_name)
+    elif args.command == "undo":
         task_manager.undo()
-    elif args.search:
+    elif args.command == "search":
         results = task_manager.search_tasks(args.search)
         cli.display_tasks(results, show_full_titles=True)
-    elif args.progress:
+    elif args.command == "progress":
         cli.display_progress(task_manager.get_progress())
-    elif args.list:
+    elif args.command == "list":
         cli.display_tasks(task_manager.get_tasks())
     else:
         parser.print_help()
