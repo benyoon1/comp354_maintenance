@@ -29,8 +29,10 @@ comp354_maintenance/
 ```
 
 ## Summary of Maintenance Contributions
-- **Task Ordering Fix**: Fixed issue where tasks were displayed out of order after undo operations. Modified `get_tasks()`, `search_tasks()`, and `undo()` methods in `task_manager.py` to ensure tasks are always displayed in ID order (1, 2, 3, etc.) regardless of internal storage order.
 
+- **GitHub Repository**: The project was originally not being tracked through any git or version control tools. We set up a GitHub repository to make contributions easier and to allow tracking of code changes.
+- **Task Ordering Fix**: Fixed issue where tasks were displayed out of order after undo operations. Modified `get_tasks()`, `search_tasks()`, and `undo()` methods in `task_manager.py` to ensure tasks are always displayed in ID order (1, 2, 3, etc.) regardless of internal storage order.
+- **Improved Display Formatting**: Enhanced the command-line output formatting in `cli_interface.py` to display tasks in a clean, aligned table format with proper column headers, making the output much more readable and professional-looking.
 
 ## Getting Started
 

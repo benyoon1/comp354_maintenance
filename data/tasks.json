@@ -18,6 +18,15 @@
         "completed_date": "2025-07-08 22:48:13"
     },
     {
+        "id": 3,
+        "title": "Go for GYM",
+        "priority": "Low",
+        "due_date": "2025-07-11",
+        "status": "completed",
+        "created_date": "2025-07-08 22:44:11",
+        "completed_date": "2025-07-08 22:48:21"
+    },
+    {
         "id": 4,
         "title": "Study for COMP 354 TEST2",
         "priority": "Medium",
@@ -34,15 +43,6 @@
         "status": "completed",
         "created_date": "2025-07-08 22:47:58",
         "completed_date": "2025-07-08 22:50:40"
-    },
-    {
-        "id": 3,
-        "title": "Go for GYM",
-        "priority": "Low",
-        "due_date": "2025-07-11",
-        "status": "completed",
-        "created_date": "2025-07-08 22:44:11",
-        "completed_date": "2025-07-08 22:48:21"
     },
     {
         "id": 6,

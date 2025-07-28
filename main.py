@@ -9,14 +9,17 @@ from undo_manager import UndoManager
 def main():
     parser = argparse.ArgumentParser(description="CLI To-Do Application")
     parser.add_argument('--add', type=str, help='Add a new task')
-    parser.add_argument('--priority', type=str, choices=['High', 'Medium', 'Low'], help='Set task priority')
-    parser.add_argument('--due', type=str, help='Set task due date (YYYY-MM-DD)')
+    parser.add_argument('--priority', type=str,
+                        choices=['High', 'Medium', 'Low'], help='Set task priority')
+    parser.add_argument('--due', type=str,
+                        help='Set task due date (YYYY-MM-DD)')
     parser.add_argument('--done', type=int, help='Mark task as complete')
     parser.add_argument('--delete', type=int, help='Delete task by ID')
     parser.add_argument('--list', action='store_true', help='List all tasks')
     parser.add_argument('--undo', action='store_true', help='Undo last action')
     parser.add_argument('--search', type=str, help='Search tasks')
-    parser.add_argument('--progress', action='store_true', help='Show task progress')
+    parser.add_argument('--progress', action='store_true',
+                        help='Show task progress')
 
     args = parser.parse_args()
 
@@ -35,7 +38,7 @@ def main():
         task_manager.undo()
     elif args.search:
         results = task_manager.search_tasks(args.search)
-        cli.display_tasks(results)
+        cli.display_tasks(results, show_full_titles=True)
     elif args.progress:
         cli.display_progress(task_manager.get_progress())
     elif args.list:
