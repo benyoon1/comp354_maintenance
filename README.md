@@ -34,6 +34,7 @@ comp354_maintenance/
 - **Task Ordering Fix**: Fixed issue where tasks were displayed out of order after undo operations. Modified `get_tasks()`, `search_tasks()`, and `undo()` methods in `task_manager.py` to ensure tasks are always displayed in order of due date (earliest first) regardless of internal storage order. Tasks without due dates appear at the end, with ID as secondary sort key.
 - **Improved Display Formatting**: Enhanced the command-line output formatting in `cli_interface.py` to display tasks in a clean, aligned table format with proper column headers, making the output much more readable and professional-looking.
 - **Enhanced Date Display**: Improved due date formatting to be more user-friendly, showing dates in natural format (e.g., "Jul 30, 2025") with relative information like "(overdue)", "(tomorrow)", or "(2 days)" to reduce cognitive load when reading tasks using --search.
+- **Added Unit tests**: Added unit tests for `cli_interface.py` and `data_handler.py`. To run all unit tests at once, refer to [Run Unit Tests](#8-run-unit-tests).
 
 ## Getting Started
 
@@ -119,6 +120,12 @@ python main.py --undo
 
 ```bash
 python main.py --progress
+```
+
+### 8. Run Unit Tests
+```bash
+cd tests
+python run_tests.py
 ```
 
 ## Tips
