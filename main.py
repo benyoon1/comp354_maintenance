@@ -11,6 +11,7 @@ def cli_parse():
     global parser
     parser = argparse.ArgumentParser(description="CLI To-Do Application")
     subparser = parser.add_subparsers(dest="command")
+
     add_parser = subparser.add_parser("add", help="Add a new task")
     add_parser.add_argument('--priority', type=str, choices=[
                             'High', 'Medium', 'Low'],
@@ -18,20 +19,23 @@ def cli_parse():
     add_parser.add_argument(
         '--due', type=str, help='Set task due date (YYYY-MM-DD)')
     add_parser.add_argument("name", type=str, help='Task Names')
+
     done_parser = subparser.add_parser("done", help="Mark task as complete")
     done_parser.add_argument(
         "--by-id", type=int, help="Select task by id", default=-1)
     done_parser.add_argument(
         "--by-name", type=str, help="Select task by name", default="")
+    
     delete_parser = subparser.add_parser("delete", help='Delete task')
     delete_parser.add_argument(
         "--by-id", type=int, help="Select task by id", default=-1)
     delete_parser.add_argument(
         "--by-name", type=str, help="Select task by name", default="")
+    
     undo_parser = subparser.add_parser("undo", help='Undo task')
     search_parser = subparser.add_parser("search", help="Search Task")
-    progress_parser = subparser.add_parser(
-        "progress", help="Show progress Task")
+    search_parser.add_argument("name", type=str, help="Name of the task to search")
+    progress_parser = subparser.add_parser("progress", help="Show progress Task")
     list_parser = subparser.add_parser("list", help="List all tasks")
     help_parser = subparser.add_parser("help")
     return parser.parse_args()
@@ -54,7 +58,7 @@ def main():
     elif args.command == "undo":
         task_manager.undo()
     elif args.command == "search":
-        results = task_manager.search_tasks(args.search)
+        results = task_manager.search_tasks(args.name)
         cli.display_tasks(results, show_full_titles=True)
     elif args.command == "progress":
         cli.display_progress(task_manager.get_progress())
