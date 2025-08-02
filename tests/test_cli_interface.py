@@ -61,5 +61,6 @@ class TestCLIInterface(unittest.TestCase):
         self.assertIn("Completed: 3 / 10", output)
         self.assertIn("30.00%", output)
 
+
 if __name__ == '__main__':
     unittest.main()

@@ -40,5 +40,6 @@ class TestDataHandler(unittest.TestCase):
         next_id = self.data_handler.get_next_id()
         self.assertEqual(next_id, 2)
 
+
 if __name__ == '__main__':
     unittest.main()
